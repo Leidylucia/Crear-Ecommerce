@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class ProductsFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -14,7 +15,6 @@ class ProductsFactory extends Factory
      * @var string
      */
     protected $model = Product::class;
-  
 
     /**
      * Define the model's default state.
@@ -23,7 +23,6 @@ class ProductsFactory extends Factory
      */
     public function definition()
     {
-
         $name = $this->faker->sentence(2);
         $subcategory = Subcategory::all()->random();
         $category = $subcategory->category;
@@ -45,4 +44,5 @@ class ProductsFactory extends Factory
 
         ];
     }
+    
 }

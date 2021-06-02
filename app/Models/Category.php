@@ -23,6 +23,6 @@ class Category extends Model
     }
     
     public function products(){
-        return $this->hasManyThrough(Products::class,Subcategory::class);
+        return $this->hasManyThrough(Product::class,Subcategory::class);
     }
 }

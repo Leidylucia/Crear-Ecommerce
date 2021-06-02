@@ -13,7 +13,7 @@ class Subcategory extends Model
 
     /* relacion 1 a muchos */
     public function products(){
-        return $this->hasMany(Products::class);
+        return $this->hasMany(Product::class);
     }
 
     /* relacion uno a muchos inverso */

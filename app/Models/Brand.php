@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Expr\FuncCall;
 
 class Brand extends Model
 {
@@ -15,7 +14,7 @@ class Brand extends Model
     /* RELACION UNO A MUCHOS */
     public function products(){
 
-        return $this->hasMany(Products::class);
+        return $this->hasMany(Product::class);
     }
     /* RELACION DE MUCHOS A MUCHOS */
 

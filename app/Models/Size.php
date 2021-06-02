@@ -11,7 +11,7 @@ class Size extends Model
     protected $fillable=['name','product_id'];
     /* Relacion 1 a muchos inversa */
     public function product(){
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Product::class);
     }
 
     /* Relacion muchos a muchos */
