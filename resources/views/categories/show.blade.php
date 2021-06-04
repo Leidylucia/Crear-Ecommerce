@@ -1,3 +1,8 @@
 <x-app-layout>
-    {{$category->name}}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <figure class="mb-4">
+            <img class="h-80 w-full object-cover object-center" src="{{Storage::url($category->image)}}" alt="">
+        </figure>
+        @livewire('category-filter', ['category' => $category])
+    </div>
 </x-app-layout>
