@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,24 @@ class Product extends Model
     const PUBLICADO = 2; 
     
     protected $guarded=['id','created_at','updated_at'];
+
+    /* Accesores */
+
+    public function getStockAttribute(){
+        if ($this->subcategory->size) {
+           return ColorSize::whereHas('size.product',function(Builder $query){
+                $query->where('id',$this->id);
+            })->sum('quantity');
+        } elseif($this->subcategory->color) {
+            return ColorProduct::whereHas('product',function(Builder $query){
+                $query->where('id',$this->id);
+            })->sum('quantity');
+        }else{
+            return $this->quantity;
+        }
+        
+    }
+
     /* Relacion 1 a muchos */
     public function sizes(){
         return $this->hasMany(Size::class);
@@ -25,7 +44,7 @@ class Product extends Model
     }
     /* Relacion muchos a muchos */
     public function colors(){
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class)->withPivot('quantity');
     }
     /* Relacion 1 a muchos polimorfica */
     public function images(){
